@@ -5,7 +5,7 @@ import Main from "./main/Main";
 const App = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Main />
     </>
   );

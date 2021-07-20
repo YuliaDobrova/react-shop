@@ -1,14 +1,15 @@
 import React from "react";
 import data from "../../data";
 import PhoneListItem from "../phoneListItem/PhoneListItem";
+import { PhoneListStyled } from "./PhoneListStyled";
 
 const PhoneList = () => {
   return (
-    <ul>
+    <PhoneListStyled>
       {data.phones.map((item) => (
         <PhoneListItem phone={item} key={item.id} />
       ))}
-    </ul>
+    </PhoneListStyled>
   );
 };
 
