@@ -1,20 +1,40 @@
 import React, { Component } from "react";
-import data from "../../data";
+// import data from "../../data";
+import { getAllAdvByCategory } from "../../services/api";
 import AdvForm from "../admin/AdvForm";
 import CartList from "../cartList/CartList";
 import ProductList from "../ProductList/ProductList";
 import Section from "../section/Section";
 import { MainStyled } from "./MainStyled";
 
+const getDataByCategory = async (category) => {
+  const response = await getAllAdvByCategory(category);
+  return response.data
+    ? Object.keys(response.data).map((key) => ({
+        id: key,
+        ...response.data[key],
+      }))
+    : [];
+};
+
 class Main extends Component {
   state = {
     cart: [],
-    ...data,
+    products: { phones: [], laptops: [] },
   };
+
+  async componentDidMount() {
+    const phones = await getDataByCategory("phones");
+    const laptops = await getDataByCategory("laptops");
+    this.setState({ products: { phones, laptops } });
+  }
 
   addNewAdv = (product) => {
     this.setState((prev) => ({
-      [product.category]: [...prev[product.category], product],
+      products: {
+        ...prev.products,
+        [product.category]: [...prev.products[product.category], product],
+      },
     }));
   };
 
@@ -49,7 +69,7 @@ class Main extends Component {
         </Section>
         <Section title={"Мобильные телефоны"}>
           <ProductList
-            products={this.state.phones}
+            products={this.state.products.phones}
             addToCart={this.addToCart}
             removeFromCart={this.removeFromCart}
             removeAllFromCart={this.removeAllFromCart}
@@ -57,7 +77,7 @@ class Main extends Component {
         </Section>
         <Section title={"Ноутбуки"}>
           <ProductList
-            products={this.state.laptops}
+            products={this.state.products.laptops}
             addToCart={this.addToCart}
             removeFromCart={this.removeFromCart}
             removeAllFromCart={this.removeAllFromCart}

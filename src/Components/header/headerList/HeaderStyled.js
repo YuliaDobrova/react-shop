@@ -14,5 +14,19 @@ export const HeaderStyled = styled.header`
     font-size: 20px;
     color: ${(props) => props.colors.darkColors.main};
     text-transform: uppercase;
+    &:hover {
+      color: #5f73a1;
+      cursor: pointer;
+    }
+  }
+
+  .burgerMenu {
+    fill: ${(props) => props.colors.darkColors.main};
+    width: 40px;
+    height: 40px;
+    &:hover {
+      fill: #5f73a1;
+      cursor: pointer;
+    }
   }
 `;
