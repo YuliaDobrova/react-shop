@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-// import data from "../../data";
+import { Route, Switch } from "react-router-dom";
+import mainRoutes from "../../routes/mainRoutes";
 import { getAllAdvByCategory } from "../../services/api";
 import AdvForm from "../admin/AdvForm";
 import CartList from "../cartList/CartList";
@@ -57,32 +58,15 @@ class Main extends Component {
   render() {
     return (
       <MainStyled>
-        <Section title="Администрирование">
-          <AdvForm addNewAdv={this.addNewAdv} />
-        </Section>
-        <Section title={"Корзина"}>
-          <CartList
-            cart={this.state.cart}
-            removeFromCart={this.removeFromCart}
-            removeAllFromCart={this.removeAllFromCart}
-          />
-        </Section>
-        <Section title={"Мобильные телефоны"}>
-          <ProductList
-            products={this.state.products.phones}
-            addToCart={this.addToCart}
-            removeFromCart={this.removeFromCart}
-            removeAllFromCart={this.removeAllFromCart}
-          />
-        </Section>
-        <Section title={"Ноутбуки"}>
-          <ProductList
-            products={this.state.products.laptops}
-            addToCart={this.addToCart}
-            removeFromCart={this.removeFromCart}
-            removeAllFromCart={this.removeAllFromCart}
-          />
-        </Section>
+        <Switch>
+          {mainRoutes.map((route) => (
+            <Route
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ))}
+        </Switch>
       </MainStyled>
     );
   }

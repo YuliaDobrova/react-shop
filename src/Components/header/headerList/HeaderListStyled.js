@@ -23,6 +23,9 @@ export const HeaderNavigation = styled.nav`
       color: #5f73a1;
     }
   }
+  .activenavigationListItemAnchor {
+    color: #5f73a1;
+  }
 
   @media (min-width: 768px) {
     .navigationList {
