@@ -1,6 +1,6 @@
 import { NavLink, Route, Switch } from "react-router-dom";
-import ProductList from "../Components/ProductList/ProductList";
-import Section from "../Components/section/Section";
+// import ProductList from "../Components/ProductList/ProductList";
+// import Section from "../Components/section/Section";
 import { productsRoutes } from "../routes/productsRoutes";
 import { ProductPageContainer } from "./ProductsPageStyled";
 
@@ -15,7 +15,10 @@ const ProductsPage = ({ match }) => {
               <NavLink
                 className="navigationListItemAnchor"
                 activeClassName="activenavigationListItemAnchor"
-                to={match.url + route.path}
+                to={{
+                  pathname: match.url + route.path,
+                  state: { category: route.category },
+                }}
                 exact={route.exact}
               >
                 {route.name}

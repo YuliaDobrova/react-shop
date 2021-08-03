@@ -6,11 +6,13 @@ export const productsRoutes = [
     path: "/phones",
     component: ProductList,
     exact: true,
+    category: "phones",
   },
   {
     name: "Ноутбуки",
     path: "/laptops",
     component: ProductList,
     exact: true,
+    category: "laptops",
   },
 ];

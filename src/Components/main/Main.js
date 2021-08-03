@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import mainRoutes from "../../routes/mainRoutes";
 import { getAllAdvByCategory } from "../../services/api";
-import AdvForm from "../admin/AdvForm";
-import CartList from "../cartList/CartList";
-import ProductList from "../ProductList/ProductList";
-import Section from "../section/Section";
+// import AdvForm from "../admin/AdvForm";
+// import CartList from "../cartList/CartList";
+// import ProductList from "../ProductList/ProductList";
+// import Section from "../section/Section";
 import { MainStyled } from "./MainStyled";
 
 const getDataByCategory = async (category) => {
@@ -64,6 +64,7 @@ class Main extends Component {
               path={route.path}
               exact={route.exact}
               component={route.component}
+              key={route.path}
             />
           ))}
         </Switch>
